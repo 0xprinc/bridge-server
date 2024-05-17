@@ -762,7 +762,7 @@ const abiinco = [
 	}
 ];
 
-const privateKey = "0x4a22312df63a67110107acef5f02c635e3fe487c3dbc8b6304455e08468601f5"; // Replace with your private key
+const privateKey = "your private key"; // Replace with your private key
 
 // Create a wallet using the private key
 const wallet = new ethers.Wallet(privateKey, providerinco);
