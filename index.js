@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+require('dotenv').config();
 
 // const provider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/34a4492831dd405f9d6b9ab19a31c8de");
 const providertarget = new ethers.providers.JsonRpcProvider("https://sepolia.base.org");
@@ -506,6 +507,11 @@ const abiinco = [
 				"internalType": "bytes",
 				"name": "proposal",
 				"type": "bytes"
+			},
+			{
+				"internalType": "uint32",
+				"name": "blocknumber",
+				"type": "uint32"
 			}
 		],
 		"name": "execute",
@@ -693,6 +699,35 @@ const abiinco = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "loll",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "proposalhash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "payload",
+				"type": "bytes"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "mailbox",
 		"outputs": [
@@ -761,9 +796,52 @@ const abiinco = [
 		"type": "function"
 	}
 ];
+const abiexec = [
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"name": "status",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "getStrategyType",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "numExecuted",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
 
-const privateKey = "your private key"; // Replace with your private key
 
+const privateKey = process.env.PRIVATE_KEY; // Replace with your private key
+
+console.log(privateKey);
 // Create a wallet using the private key
 const wallet = new ethers.Wallet(privateKey, providerinco);
 
@@ -771,10 +849,11 @@ const wallet = new ethers.Wallet(privateKey, providerinco);
 const connectedWallet = wallet.connect(providerinco);
 
 
-const contracttargetAddress = "0x2d8aEc5a11dFEFBc278C4199A445555cb21Fb9B0"; // Address of your smart contract
+const contracttargetAddress = "0x8Eae24744918a0eB2FA033b98465F37fa88575DC"; // Address of your smart contract
 const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, providertarget);
+const contractexec = new ethers.Contract("0xB9C32650fd2588eeD9DCB5cfe4c37255947DC075", abiexec, providerinco);
 
-const contractincoAddress = "0xB14f2681d8A6412579ae651d486Ffe882F670F73"; // Address of your smart contract
+const contractincoAddress = "0x6A467A912FA56112A3A392652F697b3487c3c5C7"; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
 
 // Subscribe to smart contract events
@@ -846,7 +925,7 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
 
     while (retryCount < maxRetries) {
     try {
-        const txn = await contractinco.execute(proposalhash, proposal);
+        const txn = await contractinco.execute(proposalhash, proposal, await providertarget.getBlockNumber());
         console.log("Transaction hash:", txn.hash);
 
         // Wait for 1 confirmation (adjust confirmations as needed)
@@ -873,6 +952,13 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
         }
     }
 
+
+});
+
+
+contractexec.on("status", async (a) => {
+	const status = { a };
+	console.log(status);
 
 });
 
