@@ -840,8 +840,6 @@ const abiexec = [
 
 
 const privateKey = process.env.PRIVATE_KEY; // Replace with your private key
-
-console.log(privateKey);
 // Create a wallet using the private key
 const wallet = new ethers.Wallet(privateKey, providerinco);
 
