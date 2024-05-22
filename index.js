@@ -149,10 +149,10 @@ const wallet = new ethers.Wallet(privateKey, providerinco);
 const connectedWallet = wallet.connect(providerinco);
 
 
-const contracttargetAddress = "0x531ebca6a5C47cfa0D494154bb307f0F1a1d8713"; // Address of your smart contract
+const contracttargetAddress = "0xE70b55d7643A6214287ccA4b3617179712F40aaf"; // Address of your smart contract
 const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, providertarget);
 
-const contractincoAddress = "0x6A467A912FA56112A3A392652F697b3487c3c5C7"; // Address of your smart contract
+const contractincoAddress = "0xEC559Ad40c37b87bC43a16214B1Eb615D7596F8a"; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
 
 // Subscribe to smart contract events
@@ -212,7 +212,7 @@ contracttarget.on("execute_init", async (proposalId, bProposal, executionPayload
 
     while (retryCount < maxRetries) {
     try {
-        const txn = await contractinco.execute(proposalId, proposal, executionPayload, await providertarget.getBlockNumber());
+        const txn = await contractinco.execute(proposalId, bProposal, executionPayload, await providertarget.getBlockNumber());
         console.log("Transaction hash:", txn.hash);
 
         // Wait for 1 confirmation (adjust confirmations as needed)
