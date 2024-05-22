@@ -17,30 +17,24 @@ const abitarget = [
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"internalType": "string",
+				"internalType": "bytes",
 				"name": "",
-				"type": "string"
+				"type": "bytes"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
 			}
 		],
-		"name": "ReceivedMessage",
+		"name": "execute_init",
 		"type": "event"
 	},
 	{
@@ -48,9 +42,27 @@ const abitarget = [
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
 			},
 			{
 				"indexed": false,
@@ -59,453 +71,26 @@ const abitarget = [
 				"type": "bytes"
 			}
 		],
-		"name": "counter_choice_vote",
+		"name": "vote_init",
 		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "counter_execute",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "destinationContract",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "domainId",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			},
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "author",
-						"type": "address"
-					},
-					{
-						"internalType": "uint32",
-						"name": "startBlockNumber",
-						"type": "uint32"
-					},
-					{
-						"internalType": "address",
-						"name": "executionStrategy",
-						"type": "address"
-					},
-					{
-						"internalType": "uint32",
-						"name": "minEndBlockNumber",
-						"type": "uint32"
-					},
-					{
-						"internalType": "uint32",
-						"name": "maxEndBlockNumber",
-						"type": "uint32"
-					},
-					{
-						"internalType": "enum TargetContract.FinalizationStatus",
-						"name": "finalizationStatus",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "executionPayloadHash",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "activeVotingStrategies",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct TargetContract.Proposal",
-				"name": "proposal",
-				"type": "tuple"
-			},
-			{
-				"internalType": "bytes",
-				"name": "executionPayload",
-				"type": "bytes"
-			}
-		],
-		"name": "execute",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "executecounter",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_origin",
-				"type": "uint32"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_sender",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes",
-				"name": "_data",
-				"type": "bytes"
-			}
-		],
-		"name": "handle",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_destinationContract",
-				"type": "address"
-			}
-		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastData",
-		"outputs": [
-			{
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastSender",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "mailbox",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "sendMessage",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_hook",
-				"type": "address"
-			}
-		],
-		"name": "setHook",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_module",
-				"type": "address"
-			}
-		],
-		"name": "setInterchainSecurityModule",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint32",
-				"name": "votingPower",
-				"type": "uint32"
-			},
-			{
-				"internalType": "bytes",
-				"name": "choice",
-				"type": "bytes"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "votecounter",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]; // ABI of your smart contract
 const abiinco = [
 	{
-		"anonymous": false,
 		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"name": "ReceivedMessage",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			}
-		],
-		"name": "collectChoiceData",
-		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "proposalId",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint32",
-				"name": "votingPower",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "collectChoiceHashStatus",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "collectExecuteData",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "executionPayload",
-				"type": "bytes"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "collectExecuteHashStatus",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "destinationContract",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "domainId",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "proposalhash",
-				"type": "bytes32"
 			},
 			{
 				"internalType": "bytes",
 				"name": "proposal",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "executionPayload",
 				"type": "bytes"
 			},
 			{
@@ -522,247 +107,28 @@ const abiinco = [
 	{
 		"inputs": [
 			{
-				"internalType": "bytes",
-				"name": "choiceHash",
-				"type": "bytes"
-			}
-		],
-		"name": "getCollectChoiceData",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "proposalId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint32",
-						"name": "votingPower",
-						"type": "uint32"
-					}
-				],
-				"internalType": "struct IncoContract.choiceData",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "choiceHash",
-				"type": "bytes"
-			}
-		],
-		"name": "getCollectChoiceHashStatus",
-		"outputs": [
-			{
-				"internalType": "bool[2]",
-				"name": "",
-				"type": "bool[2]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			}
-		],
-		"name": "getIsExecuted",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			},
 			{
 				"internalType": "uint256",
 				"name": "proposalId",
 				"type": "uint256"
 			},
-			{
-				"internalType": "uint8",
-				"name": "choice",
-				"type": "uint8"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "publicKey",
-				"type": "bytes32"
-			}
-		],
-		"name": "getVotePower",
-		"outputs": [
-			{
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
 			{
 				"internalType": "uint32",
-				"name": "_origin",
+				"name": "votingPower",
 				"type": "uint32"
 			},
 			{
-				"internalType": "bytes32",
-				"name": "_sender",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes",
-				"name": "_data",
-				"type": "bytes"
-			}
-		],
-		"name": "handle",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_destinationContract",
-				"type": "address"
-			}
-		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			}
-		],
-		"name": "isExecuted",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastData",
-		"outputs": [
-			{
-				"internalType": "bytes",
-				"name": "",
-				"type": "bytes"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastSender",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "loll",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "proposalhash",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "payload",
-				"type": "bytes"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "mailbox",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "sendMessage",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "choiceHash",
-				"type": "bytes"
-			},
-			{
 				"internalType": "bytes",
 				"name": "choice",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "signature",
 				"type": "bytes"
 			}
 		],
@@ -770,73 +136,9 @@ const abiinco = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposalId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint8",
-				"name": "choice",
-				"type": "uint8"
-			}
-		],
-		"name": "votePower",
-		"outputs": [
-			{
-				"internalType": "euint32",
-				"name": "votePower",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
-const abiexec = [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"name": "status",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "getStrategyType",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "numExecuted",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
+
 
 
 const privateKey = process.env.PRIVATE_KEY; // Replace with your private key
@@ -847,33 +149,20 @@ const wallet = new ethers.Wallet(privateKey, providerinco);
 const connectedWallet = wallet.connect(providerinco);
 
 
-const contracttargetAddress = "0x8Eae24744918a0eB2FA033b98465F37fa88575DC"; // Address of your smart contract
+const contracttargetAddress = "0x531ebca6a5C47cfa0D494154bb307f0F1a1d8713"; // Address of your smart contract
 const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, providertarget);
-const contractexec = new ethers.Contract("0xB9C32650fd2588eeD9DCB5cfe4c37255947DC075", abiexec, providerinco);
 
 const contractincoAddress = "0x6A467A912FA56112A3A392652F697b3487c3c5C7"; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
 
 // Subscribe to smart contract events
-contracttarget.on("counter_choice_vote", async (votecounter, data) => {
+contracttarget.on("vote_init", async (voter, proposalId, votingPower, choice, signature) => {
     // Extract relevant data from the event
-    const voteData = { votecounter, data };
+    const voteData = { voter, proposalId, votingPower, choice, signature };
 
     // Initiate transaction on another blockchain
     // Example: sendTransactionToOtherChain(eventData);
-    console.log("vote event:", votecounter);
-
-    // try {
-    //     const txn = await contractinco.vote(ethers.utils.keccak256(data), data);
-    //     console.log("Transaction hash:", txn.hash);
-  
-    //     // Wait for 1 confirmation (adjust confirmations as needed)
-    //     await txn.wait(1);
-    //     console.log("txn successful!");
-    //   } catch (error) {
-    //     console.error("txn failed:", error);
-    //     // Handle the error appropriately (e.g., retry, notify user)
-    //   }
+    // console.log("vote event:", votecounter);
 
 
         const maxRetries = 4; // Number of maximum retry attempts
@@ -881,7 +170,7 @@ contracttarget.on("counter_choice_vote", async (votecounter, data) => {
 
     while (retryCount < maxRetries) {
         try {
-            const txn = await contractinco.vote(ethers.utils.keccak256(data), data);
+            const txn = await contractinco.vote(voter, proposalId, votingPower, choice, signature);
             console.log("Transaction hash:", txn.hash);
 
             // Wait for 1 confirmation (adjust confirmations as needed)
@@ -910,20 +199,20 @@ contracttarget.on("counter_choice_vote", async (votecounter, data) => {
 
 });
 
-contracttarget.on("counter_execute", async (executecounter, proposal, proposalhash) => {
+contracttarget.on("execute_init", async (proposalId, bProposal, executionPayload) => {
     // Extract relevant data from the event
-    const executeData = { executecounter, proposal, proposalhash };
+    const executeData = { proposalId, bProposal, executionPayload };
 
     // Initiate transaction on another blockchain
     // Example: sendTransactionToOtherChain(eventData);
-    console.log("execute event:", executeData);
+    // console.log("execute event:", executeData);
 
     const maxRetries = 4; // Number of maximum retry attempts
     let retryCount = 0; // Counter to keep track of retry attempts
 
     while (retryCount < maxRetries) {
     try {
-        const txn = await contractinco.execute(proposalhash, proposal, await providertarget.getBlockNumber());
+        const txn = await contractinco.execute(proposalId, proposal, executionPayload, await providertarget.getBlockNumber());
         console.log("Transaction hash:", txn.hash);
 
         // Wait for 1 confirmation (adjust confirmations as needed)
@@ -950,13 +239,6 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
         }
     }
 
-
-});
-
-
-contractexec.on("status", async (a) => {
-	const status = { a };
-	console.log(status);
 
 });
 
