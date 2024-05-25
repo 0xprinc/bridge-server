@@ -1,6 +1,15 @@
 const { ethers } = require("ethers");
 require('dotenv').config();
 
+// Get the command line arguments
+const args = process.argv.slice(2); // slice(2) removes the first two elements, which are 'node' and the script name
+
+// Ensure the correct number of arguments are provided
+if (args.length !== 2) {
+    console.error('Usage: node index.js <contractincoAddress> <contracttargetAddress>');
+    process.exit(1);
+}
+
 // const provider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/34a4492831dd405f9d6b9ab19a31c8de");
 const providertarget = new ethers.providers.JsonRpcProvider("https://sepolia.base.org");
 const providerinco = new ethers.providers.JsonRpcProvider("https://testnet.inco.org");
@@ -149,11 +158,14 @@ const wallet = new ethers.Wallet(privateKey, providerinco);
 const connectedWallet = wallet.connect(providerinco);
 
 
-const contracttargetAddress = "0xE70b55d7643A6214287ccA4b3617179712F40aaf"; // Address of your smart contract
+const contracttargetAddress = args[1]; // Address of your smart contractķ
 const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, providertarget);
 
-const contractincoAddress = "0xEC559Ad40c37b87bC43a16214B1Eb615D7596F8a"; // Address of your smart contract
+const contractincoAddress = args[0]; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
+
+console.log("incoEndpointAddress:", contractincoAddress);
+console.log("targetContractAddress:", contracttargetAddress);
 
 // Subscribe to smart contract events
 contracttarget.on("vote_init", async (voter, proposalId, votingPower, choice, signature) => {
@@ -207,7 +219,7 @@ contracttarget.on("execute_init", async (proposalId, bProposal, executionPayload
     // Example: sendTransactionToOtherChain(eventData);
     // console.log("execute event:", executeData);
 
-    const maxRetries = 4; // Number of maximum retry attempts
+    const maxRetries = 5; // Number of maximum retry attempts
     let retryCount = 0; // Counter to keep track of retry attempts
 
     while (retryCount < maxRetries) {
