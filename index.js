@@ -9,6 +9,14 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  // Get the command line arguments
+const args = process.argv.slice(2); // slice(2) removes the first two elements, which are 'node' and the script name
+
+// Ensure the correct number of arguments are provided
+if (args.length !== 2) {
+    console.error('Usage: node index.js <contractincoAddress> <contracttargetAddress>');
+    process.exit(1);
+}
 
 // Define smart contract interface and address
 const abitarget = [
@@ -796,47 +804,6 @@ const abiinco = [
 		"type": "function"
 	}
 ];
-const abiexec = [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"name": "status",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "getStrategyType",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "numExecuted",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
 
 
 const privateKey = process.env.PRIVATE_KEY; // Replace with your private key
@@ -847,11 +814,10 @@ const wallet = new ethers.Wallet(privateKey, providerinco);
 const connectedWallet = wallet.connect(providerinco);
 
 
-const contracttargetAddress = "0x6228796a18187d4CfB12CfB6E658F34a52De2b27"; // Address of your smart contract
+const contracttargetAddress = args[1]; // Address of your smart contract
 const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, providertarget);
-const contractexec = new ethers.Contract("0x56a9B95A5C93c8a337684B482c6E074d6f9a9621", abiexec, providerinco);
 
-const contractincoAddress = "0x7106c4F4Ddc877158C067ADf0508d481A3590CEe"; // Address of your smart contract
+const contractincoAddress = args[0]; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
 
 // Subscribe to smart contract events
@@ -950,13 +916,6 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
         }
     }
 
-
-});
-
-
-contractexec.on("status", async (a) => {
-	const status = { a };
-	console.log(status);
 
 });
 
