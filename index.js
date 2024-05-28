@@ -825,23 +825,6 @@ contracttarget.on("counter_choice_vote", async (votecounter, data) => {
     // Extract relevant data from the event
     const voteData = { votecounter, data };
 
-    // Initiate transaction on another blockchain
-    // Example: sendTransactionToOtherChain(eventData);
-    console.log("vote event:", votecounter);
-
-    // try {
-    //     const txn = await contractinco.vote(ethers.utils.keccak256(data), data);
-    //     console.log("Transaction hash:", txn.hash);
-  
-    //     // Wait for 1 confirmation (adjust confirmations as needed)
-    //     await txn.wait(1);
-    //     console.log("txn successful!");
-    //   } catch (error) {
-    //     console.error("txn failed:", error);
-    //     // Handle the error appropriately (e.g., retry, notify user)
-    //   }
-
-
         const maxRetries = 4; // Number of maximum retry attempts
         let retryCount = 0; // Counter to keep track of retry attempts
 
@@ -852,7 +835,7 @@ contracttarget.on("counter_choice_vote", async (votecounter, data) => {
 
             // Wait for 1 confirmation (adjust confirmations as needed)
             await txn.wait(1);
-            console.log("Transaction successful!");
+            console.log("vote Transaction successful!");
 
             // Exit the loop if transaction is successful
             break;
@@ -880,10 +863,6 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
     // Extract relevant data from the event
     const executeData = { executecounter, proposal, proposalhash };
 
-    // Initiate transaction on another blockchain
-    // Example: sendTransactionToOtherChain(eventData);
-    console.log("execute event:", executeData);
-
     const maxRetries = 4; // Number of maximum retry attempts
     let retryCount = 0; // Counter to keep track of retry attempts
 
@@ -894,7 +873,7 @@ contracttarget.on("counter_execute", async (executecounter, proposal, proposalha
 
         // Wait for 1 confirmation (adjust confirmations as needed)
         await txn.wait(1);
-        console.log("Transaction successful!");
+        console.log("execute Transaction successful!");
 
         // Exit the loop if transaction is successful
         break;
