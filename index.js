@@ -506,8 +506,8 @@ const contracttarget = new ethers.Contract(contracttargetAddress, abitarget, con
 const contractincoAddress = args[0]; // Address of your smart contract
 const contractinco = new ethers.Contract(contractincoAddress, abiinco, connectedWallet);
 
-console.log("incoEndpointAddress:", contractincoAddress);
-console.log("targetContractAddress:", contracttargetAddress);
+// console.log("incoEndpointAddress:", contractincoAddress);
+// console.log("targetContractAddress:", contracttargetAddress);
 
 // Subscribe to smart contract events
 contracttarget.on("vote_init", async (voter, proposalId, votingPower, choice, signature) => {
